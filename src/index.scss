@@ -5,18 +5,28 @@
   --gridlineColumn: calc((var(--gridlineCenter) - 11 * var(--gridlineGap)) / 12);
   --gridlineMargin: calc((100vw - var(--gridlineCenter)) / 2);
 
+  box-sizing: border-box;
+
+  & > * {
+    box-sizing: inherit;
+  }
+
   &:not(&--scrolling) {
     display: flex;
   }
 
   &:not(&--scrolling) > * {
-    flex: 1 0 calc((var(--gridlineColumn) * var(--column, 1) + (var(--column, 1) - 1) * var(--gridlineGap)) + var(--gridlineInfinite, 0px));
+    flex: 1 0 calc((var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap)) + var(--gridlineInfinite, 0px));
+  }
+
+  &--center:not(&--scrolling) > *,
+  &--left:not(&--scrolling) > *,
+  &--right:not(&--scrolling) > * {
     margin-left: calc(var(--gridlineColumn) * var(--offset, 0) + (var(--offset, 0) - 1) * var(--gridlineGap) + var(--gridlineGap));
     margin-right: var(--gridlineGap);
-    box-sizing: inherit;
 
     &:not([class*=edge]) {
-      max-width: calc(var(--gridlineColumn) * var(--column, 1) + (var(--column, 1) - 1) * var(--gridlineGap));
+      max-width: calc(var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap));
     }
 
     &[class*=edge] {
@@ -52,7 +62,6 @@
     overflow-x: auto;
     max-width: min(calc(var(--gridlineCenter) + calc(var(--gridlinePadding) * 2)), 100vw);
     margin: auto;
-    box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     -webkit-backface-visibility: hidden;
 
@@ -62,10 +71,9 @@
 
     [class*=scrolling] {
       min-width: 100%;
+      float: left;
       padding-left: var(--gridlinePadding);
       padding-right: var(--gridlinePadding);
-      float: left;
-      box-sizing: border-box;
     }
   }
 }
