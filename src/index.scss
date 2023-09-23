@@ -17,6 +17,7 @@
 
   &:not(&--scrolling) > * {
     flex: 1 0 calc((var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap)) + var(--gridlineInfinite, 0px));
+    margin-left: calc(var(--gridlineColumn) * var(--offset, 0) + (var(--offset, 0) - 1) * var(--gridlineGap) + var(--gridlineGap));
 
     &:not(:last-child) {
       margin-right: var(--gridlineGap);
@@ -26,8 +27,6 @@
   &--center:not(&--scrolling) > *,
   &--left:not(&--scrolling) > *,
   &--right:not(&--scrolling) > * {
-    margin-left: calc(var(--gridlineColumn) * var(--offset, 0) + (var(--offset, 0) - 1) * var(--gridlineGap) + var(--gridlineGap));
-
     &:not([class*=edge]) {
       max-width: calc(var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap));
     }
