@@ -1,6 +1,6 @@
 {
   "name": "gridline",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Flexbox grid system to build layouts",
   "author": "ux-ui.pro",
   "license": "MIT",
@@ -18,16 +18,11 @@
     }
   },
   "scripts": {
-    "serve": "parcel watch",
     "build": "parcel build",
-    "clean": "rm -rf dist .parcel-cache",
-    "lint": "eslint --ext .js --report-unused-disable-directives ."
+    "clean": "rm -rf dist .parcel-cache"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "~2.9.3",
-    "eslint": "^7.32.0 || ^8.2.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.2",
     "parcel": "~2.9.3",
     "sass": "^1.67.0"
   },
