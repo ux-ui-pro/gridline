@@ -11,13 +11,13 @@
     box-sizing: inherit;
   }
 
-  &:not(&--scrolling) {
+  &:not(&--scrolling):not(&--collapse) {
     display: flex;
   }
 
-  &:not(&--scrolling) > * {
-    flex: 1 0 calc((var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap)) + var(--gridlineInfinite, 0px));
+  &:not(&--collapse):not(&--scrolling) > * {
     margin-left: calc(var(--gridlineColumn) * var(--offset, 0) + (var(--offset, 0) - 1) * var(--gridlineGap) + var(--gridlineGap));
+    flex: 1 0 calc((var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap)) + var(--gridlineInfinite, 0px));
 
     &:not(:last-child) {
       margin-right: var(--gridlineGap);
@@ -27,16 +27,18 @@
   &--center:not(&--scrolling) > *,
   &--left:not(&--scrolling) > *,
   &--right:not(&--scrolling) > * {
-    &:not([class*=edge]) {
-      max-width: calc(var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap));
-    }
-
     &[class*=edge] {
       --gridlineInfinite: var(--gridlineMargin);
 
       &:first-child {
         margin-left: calc(var(--gridlineMargin) * -1);
       }
+    }
+  }
+
+  & > * {
+    &[class*=edge]:not(:first-child) {
+      margin-right: calc(var(--gridlineMargin) * -1);
     }
   }
 
@@ -60,7 +62,7 @@
   }
 
   &--scrolling {
-    overflow: clip;
+    overflow: hidden;
     overflow-x: auto;
     max-width: min(calc(var(--gridlineCenter) + calc(var(--gridlinePadding) * 2)), 100vw);
     margin: auto;
