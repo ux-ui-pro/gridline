@@ -1,83 +1,81 @@
 .gridline {
-  --gridlinePadding: var(--padding, 20px);
-  --gridlineGap: var(--gap, 20px);
-  --gridlineCenter: min(calc(100vw - (var(--gridlinePadding) * 2)), var(--width, 100%));
-  --gridlineColumn: calc((var(--gridlineCenter) - 11 * var(--gridlineGap)) / 12);
-  --gridlineMargin: calc((100vw - var(--gridlineCenter)) / 2);
+  --gridline-calc-padding: var(--gridline-padding, 20px);
+  --gridline-calc-gap: var(--gridline-gap, 20px);
+  --gridline-calc-center: min(calc(100vw - (var(--gridline-calc-padding) * 2)), var(--gridline-width, 100%));
+  --gridline-calc-column: calc((var(--gridline-calc-center) - 11 * var(--gridline-calc-gap)) / 12);
+  --gridline-calc-margin: calc((100vw - var(--gridline-calc-center)) / 2);
 
   box-sizing: border-box;
 
   & > * {
     box-sizing: inherit;
+
+    &[class*="edge"]:not(:first-child) {
+      margin-right: calc(var(--gridline-calc-margin) * -1);
+    }
   }
 
-  &:not(&--scrolling):not(&--collapse) {
+  &:not(&--scrolling, &--collapse) {
     display: flex;
   }
 
-  &:not(&--collapse):not(&--scrolling) > * {
-    margin-left: calc(var(--gridlineColumn) * var(--offset, 0) + (var(--offset, 0) - 1) * var(--gridlineGap) + var(--gridlineGap));
-    flex: 1 0 calc((var(--gridlineColumn) * var(--column, 12) + (var(--column, 12) - 1) * var(--gridlineGap)) + var(--gridlineInfinite, 0px));
+  &:not(&--collapse, &--scrolling) > * {
+    margin-left: calc(var(--gridline-calc-column) * var(--gridline-offset, 0) + (var(--gridline-offset, 0) - 1) * var(--gridline-calc-gap) + var(--gridline-calc-gap));
+    flex: 1 0 calc((var(--gridline-calc-column) * var(--gridline-column, 12) + (var(--gridline-column, 12) - 1) * var(--gridline-calc-gap)) + var(--gridline-infinite, 0px));
 
     &:not(:last-child) {
-      margin-right: var(--gridlineGap);
+      margin-right: var(--gridline-calc-gap);
     }
   }
 
   &--center:not(&--scrolling) > *,
   &--left:not(&--scrolling) > *,
   &--right:not(&--scrolling) > * {
-    &[class*=edge] {
-      --gridlineInfinite: var(--gridlineMargin);
+    &[class*="edge"] {
+      --gridline-infinite: var(--gridline-calc-margin);
 
       &:first-child {
-        margin-left: calc(var(--gridlineMargin) * -1);
+        margin-left: calc(var(--gridline-calc-margin) * -1);
       }
     }
   }
 
-  & > * {
-    &[class*=edge]:not(:first-child) {
-      margin-right: calc(var(--gridlineMargin) * -1);
-    }
-  }
-
   &--center {
-    max-width: var(--gridlineCenter);
+    max-width: var(--gridline-calc-center);
     margin-left: auto;
     margin-right: auto;
   }
 
   &--left,
   &--right {
-    max-width: calc(var(--gridlineCenter) + var(--gridlineMargin));
+    max-width: calc(var(--gridline-calc-center) + var(--gridline-calc-margin));
 
     & > * {
-      --gridlineColumn: calc((100% - 11 * var(--gridlineGap)) / 12);
+      --gridline-calc-column: calc((100% - 11 * var(--gridline-calc-gap)) / 12);
     }
   }
 
   &--right {
-    transform: translateX(var(--gridlineMargin));
+    transform: translateX(var(--gridline-calc-margin));
   }
 
   &--scrolling {
     overflow: hidden;
     overflow-x: auto;
-    max-width: min(calc(var(--gridlineCenter) + calc(var(--gridlinePadding) * 2)), 100vw);
+    max-width: min(calc(var(--gridline-calc-center) + calc(var(--gridline-calc-padding) * 2)), 100vw);
     margin: auto;
     -webkit-overflow-scrolling: touch;
-    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 
     @media (pointer: coarse) {
       padding-bottom: 10px;
     }
 
-    [class*=scrolling] {
+    [class*="scrolling"] {
       min-width: 100%;
       float: left;
-      padding-left: var(--gridlinePadding);
-      padding-right: var(--gridlinePadding);
+      padding-left: var(--gridline-calc-padding);
+      padding-right: var(--gridline-calc-padding);
     }
   }
 }

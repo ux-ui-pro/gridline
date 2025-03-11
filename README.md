@@ -60,13 +60,13 @@ yarn add gridline
 
 <sub>CSS styling</sub>
 
-| Variable     |   Target    | Default |        Unit        | Description                                          |
-|:-------------|:-----------:|:-------:|:------------------:|:-----------------------------------------------------|
-| `--width`    | `.gridline` |  100%   |        `px`        | Width of the layout.                                 |
-| `--padding`  | `.gridline` | `20px`  |     `px`, `vw`     | Sets indents between columns.                        |
-| `--gap`      | `.gridline` | `20px`  |     `px`, `vw`     | Sets indents between columns. `0px` to turn off gap. |
-| `--column`   |    child    |   `1`   | integer or decimal | Sets column width.                                   |
-| `--offset`   |    child    |   `0`   | integer or decimal | Sets the column offset to the right.                 |
+| Variable             |   Target    | Default |        Unit        | Description                                          |
+|:---------------------|:-----------:|:-------:|:------------------:|:-----------------------------------------------------|
+| `--gridline-width`   | `.gridline` | `100%`  |        `px`        | Width of the layout.                                 |
+| `--gridline-padding` | `.gridline` | `20px`  |     `px`, `vw`     | Sets indents between columns.                        |
+| `--gridline-gap`     | `.gridline` | `20px`  |     `px`, `vw`     | Sets indents between columns. `0px` to turn off gap. |
+| `--gridline-column`  |    child    |   `1`   | integer or decimal | Sets column width.                                   |
+| `--gridline-offset`  |    child    |   `0`   | integer or decimal | Sets the column offset to the right.                 |
 <br>
 
 &#10148; **Continue to the edge**
