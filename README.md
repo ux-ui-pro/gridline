@@ -1,86 +1,91 @@
-<br>
-<p align="center"><strong>gridline</strong></p>
+# gridline
 
-<div align="center">
+Flexbox grid system for building responsive 12-column layouts with CSS custom properties.
 
 [![npm](https://img.shields.io/npm/v/gridline.svg?colorB=brightgreen)](https://www.npmjs.com/package/gridline)
-[![GitHub package version](https://img.shields.io/github/package-json/v/ux-ui-pro/gridline.svg)](https://github.com/ux-ui-pro/gridline)
-[![NPM Downloads](https://img.shields.io/npm/dm/gridline.svg?style=flat)](https://www.npmjs.org/package/gridline)
+[![NPM Downloads](https://img.shields.io/npm/dm/gridline.svg?style=flat)](https://www.npmjs.com/package/gridline)
 
-</div>
+[Demo](https://codepen.io/ux-ui/pen/QWzqdbp)
 
-<p align="center"><sup>450B gzipped</sup></p>
-<p align="center"><a href="https://t8th3h.csb.app/">Demo</a></p>
-<br>
+---
 
-&#10148; **Install**
+## Features
 
-```console
-yarn add gridline
+- 12-column flexbox grid with gap and offset controls
+- Container modifiers: center, left, right, scrolling, collapse
+- Edge-to-viewport columns via `.edge` class pattern
+- Tunable layout via CSS custom properties on `.gridline` and children
+
+---
+
+## Installation
+
+```bash
+npm install gridline
 ```
-<br>
 
-&#10148; **Import**
+Import the packaged stylesheet in your app entry:
 
-<sub>CSS</sub>
+```js
+import 'gridline';
+```
+
+Or use the deep path:
+
 ```scss
-@import "gridline/dist";
+@use "gridline/dist/index.css" as *;
 ```
 
-<sub>SCSS</sub>
-```scss
-@import "gridline/src";
-```
-<br>
+---
 
-&#10148; **Usage**
- 
+## Quick Start
+
 ```html
 <div class="gridline">
-  <div>
-    ...
-  </div>
-  ...
+  <div style="--gridline-column: 6">...</div>
+  <div style="--gridline-column: 6">...</div>
 </div>
 ```
-<br>
 
-&#10148; **Settings**
+---
 
-<sub>Container</sub>
+## Settings
 
-| HTML class             | Requires a child | Description                                                                                                 |
-|:-----------------------|:----------------:|:------------------------------------------------------------------------------------------------------------|
-| `.gridline`            |        —         | Will create a container that will occupy the full width of the layout.                                      |
-| `.gridline--center`    |        —         | Creates a container aligned to the center of the layout.                                                    |
-| `.gridline--left`      |        —         | Creates a container, the left edge of which will be stretched to the left edge of the layout.               |
-| `.gridline--right`     |        —         | Creates a container, the right edge of which will be stretched to the right edge of the layout.             |
-| `.gridline--scrolling` |     required     | Will create a container that, when overflowing with content horizontally, will receive a horizontal scroll. |
-| `.gridline--collapse`  |        —         | Lines up the grid in a single column.                                                                       |
+### Container classes
 
-<sub>CSS styling</sub>
+| Class | Requires a child | Description |
+| --- | :---: | --- |
+| `.gridline` | — | Full-width layout container. |
+| `.gridline--center` | — | Container centered in the viewport. |
+| `.gridline--left` | — | Container aligned to the left edge of the layout. |
+| `.gridline--right` | — | Container aligned to the right edge of the layout. |
+| `.gridline--scrolling` | required | Horizontal scroll when content overflows. |
+| `.gridline--collapse` | — | Single-column collapsed grid. |
 
-| Variable             |   Target    | Default |        Unit        | Description                                          |
-|:---------------------|:-----------:|:-------:|:------------------:|:-----------------------------------------------------|
-| `--gridline-width`   | `.gridline` | `100%`  |        `px`        | Width of the layout.                                 |
-| `--gridline-padding` | `.gridline` | `20px`  |     `px`, `vw`     | Sets indents between columns.                        |
-| `--gridline-gap`     | `.gridline` | `20px`  |     `px`, `vw`     | Sets indents between columns. `0px` to turn off gap. |
-| `--gridline-column`  |    child    |   `1`   | integer or decimal | Sets column width.                                   |
-| `--gridline-offset`  |    child    |   `0`   | integer or decimal | Sets the column offset to the right.                 |
-<br>
+### CSS custom properties
 
-&#10148; **Continue to the edge**
+| Variable | Target | Default | Unit | Description |
+| --- | --- | :---: | --- | --- |
+| `--gridline-width` | `.gridline` | `100%` | `px` | Width of the layout. |
+| `--gridline-padding` | `.gridline` | `20px` | `px`, `vw` | Outer padding of the container. |
+| `--gridline-gap` | `.gridline` | `20px` | `px`, `vw` | Gap between columns; `0px` disables gap. |
+| `--gridline-column` | child | `1` | integer or decimal | Column span width. |
+| `--gridline-offset` | child | `0` | integer or decimal | Column offset to the right. |
 
-<p>To extend the left or right column to the edge of the window, you need to add the `.edge` class to the column, or a class that has `edge` in its name.</p>
+---
 
-<br>
+## Styling
 
-&#10148; **Scrolling**
+### Continue to the edge
 
-<p>In order for a horizontal scroll to appear when the container overflows, it is necessary to add a styling class to the parent container `.gridline--scrolling`, and add a `.scrolling` class or a class containing `scrolling` in the name to the child block.</p>
+To extend a column to the left or right edge of the viewport, add the `.edge` class to the column, or any class name containing `edge`.
 
-<br>
+### Scrolling
 
-&#10148; **License**
+For horizontal scroll on overflow, add `.gridline--scrolling` to the parent container and `.scrolling` (or a class containing `scrolling`) to the child block.
 
-<p>gridline is released under MIT license</p>
+---
+
+## License
+
+MIT
