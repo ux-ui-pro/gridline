@@ -2,6 +2,7 @@
   "name": "gridline",
   "version": "2.0.0",
   "description": "Flexbox grid system to build layouts",
+  "type": "module",
   "author": "ux-ui.pro",
   "license": "MIT",
   "repository": {
@@ -12,24 +13,59 @@
     "url": "https://github.com/ux-ui-pro/gridline/issues"
   },
   "homepage": "https://github.com/ux-ui-pro/gridline",
-  "sideEffects": false,
-  "scripts": {
-    "build": "vite build",
-    "lint:css": "stylelint src/**/*.scss",
-    "lint:fix:css": "stylelint src/**/*.scss --fix"
+  "sideEffects": [
+    "dist/*.css"
+  ],
+  "packageManager": "npm@10.9.3",
+  "engines": {
+    "node": ">=20.19.0"
   },
+  "style": "./dist/index.css",
   "exports": {
+    ".": {
+      "style": "./dist/index.css",
+      "default": "./dist/index.css"
+    },
     "./dist/*": "./dist/*"
   },
   "files": [
-    "dist/"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
-  "devDependencies": {
-    "stylelint": "16.15.0",
-    "stylelint-config-standard-scss": "14.0.0",
-    "stylelint-selector-bem-pattern": "4.0.1",
-    "sass": "1.85.1",
-    "vite": "6.2.1"
+  "publishConfig": {
+    "access": "public"
   },
-  "keywords": []
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "vite build",
+    "lint:css": "stylelint \"src/**/*.scss\"",
+    "lint:fix:css": "stylelint \"src/**/*.scss\" --fix",
+    "test:smoke": "node --test \"tests/**/*.js\"",
+    "pack:check": "npm pack --dry-run && publint",
+    "verify": "npm run lint:css && npm run build && npm run test:smoke && npm run pack:check",
+    "prepublishOnly": "npm run clean && npm run verify"
+  },
+  "devDependencies": {
+    "lightningcss": "1.30.2",
+    "publint": "^0.3.21",
+    "rimraf": "6.1.3",
+    "sass": "1.97.0",
+    "stylelint": "16.25.0",
+    "stylelint-config-standard-scss": "16.0.0",
+    "stylelint-selector-bem-pattern": "4.0.1",
+    "vite": "7.3.0"
+  },
+  "keywords": [
+    "grid",
+    "flexbox",
+    "layout",
+    "css",
+    "scss",
+    "responsive",
+    "12-column",
+    "bem",
+    "utilities",
+    "design"
+  ]
 }

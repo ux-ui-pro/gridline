@@ -2,5 +2,8 @@
   "extends": [
     "stylelint-config-standard-scss",
     "stylelint-selector-bem-pattern"
-  ]
+  ],
+  "rules": {
+    "no-descending-specificity": null
+  }
 }
